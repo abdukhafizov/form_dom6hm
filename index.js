@@ -3,8 +3,8 @@ let errorIcon = document.querySelectorAll('.icon')
 let requiredInps = document.querySelectorAll('.required')
 let SUCCESS = document.querySelector('#Success')
 let ERROR = document.querySelector('#Error')
- 
-
+let buttonload = document.querySelector(".buttonload") 
+let modal_id = document.querySelector("#modal_id")
 
 let patterns = {
     name: /^[a-z ,.'-]+$/i,
@@ -51,65 +51,22 @@ exampleForm.onsubmit = (event) => {
     ERROR.innerHTML = `Error: ${ErCount} / ${requiredInps.length}`
 
     if (isError == false) {
-        onsubmit()
+        let delay = 2000;
+
+        buttonload.style.display = "block"
+        setTimeout(() => {
+            exampleForm.submit();
+        }, delay);
     } else {
-        alert('Ответье на ВСЕ вопросы!')
+        modal_id.classList.add("open")
+        let delay_modal = 1500;
+
+        setTimeout(() =>{
+            modal_id.classList.remove("open")
+        }, delay_modal)
+
+
     }
 }
 
-
-
-// function validate(regex, field) {
-//     if (regex.test(field.value)) {
-//         field.parentElement.classList.remove('invalid')
-//     } else {
-//         field.parentElement.classList.add('invalid')
-//     }
-// }
-
-
-// function onSubmit() {
-//     let user = {}
-//     let fm = new FormData(exampleForm)
-
-//     fm.forEach((value, key) => {
-//         user[key] = value
-//     })
-
-//     console.log(user);
-// }
-
-// exampleForm.onsubmit = (event) => {
-//     event.preventDefault()
-//     let isError = false
-
-
-
-
-//     requiredInps.forEach((inp) => {
-//         inp.classList.remove('error')
-//         inp.nextElementSibling.nextElementSibling.classList.remove('error-icon-active')
-//         inp.nextElementSibling.innerHTML = 'Need to fill';
-//         inp.nextElementSibling.style.color = 'grey'
-//         inp.previousElementSibling.style.color = 'blue'
-//         if (inp.value.length === 0) {
-//             inp.parentElement.classList.add('invalid')
-//             isError = true
-//             inp.nextElementSibling.nextElementSibling.classList.add('invalid')
-//             inp.nextElementSibling.innerHTML = 'Need to fill of ' + inp.name 
-             
-//         } else {
-//             inp.nextElementSibling.nextElementSibling.classList.remove('invalid')
-//         }
-
-
-//     })
-
-
-//     if (isError === true) {
-
-//     } else {
-//         onSubmit()
-//     }
-// }
 
